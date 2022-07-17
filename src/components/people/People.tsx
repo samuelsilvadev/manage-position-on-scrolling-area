@@ -9,7 +9,7 @@ import { PEOPLE_MOCK_DATA } from "./data";
 
 const People = () => {
   return (
-    <Container fullWidth direction={CONTAINER_DIRECTION.VERTICAL}>
+    <Container fullHeight fullWidth direction={CONTAINER_DIRECTION.VERTICAL}>
       <Container
         fullWidth
         padding={CONTAINER_PADDING.NONE}
