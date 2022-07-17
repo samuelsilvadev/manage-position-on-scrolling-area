@@ -4,24 +4,8 @@ import Container, {
 } from "components/container";
 import Spacing, { SPACING_MARGINS } from "components/spacing";
 import { Link } from "react-router-dom";
-import PeopleContent, { PeopleContentProps } from "./people-content";
-
-const MOCK_PEOPLE: PeopleContentProps["people"] = [
-  {
-    name: "Samuel",
-    surname: "Silva",
-    age: 26,
-    sex: "M",
-    id: "1",
-  },
-  {
-    name: "Kathleen",
-    surname: "Silva",
-    age: 27,
-    sex: "F",
-    id: "2",
-  },
-];
+import PeopleContent from "./people-content";
+import { PEOPLE_MOCK_DATA } from "./data";
 
 const People = () => {
   return (
@@ -48,7 +32,7 @@ const People = () => {
         padding={CONTAINER_PADDING.NONE}
       >
         <Spacing size={SPACING_MARGINS.BIG} />
-        <PeopleContent people={MOCK_PEOPLE} />
+        <PeopleContent people={PEOPLE_MOCK_DATA} />
       </Container>
     </Container>
   );

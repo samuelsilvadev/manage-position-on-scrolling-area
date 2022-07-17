@@ -10,21 +10,28 @@ import styles from "./peopleContent.module.scss";
 export interface PeopleContentProps {
   people: {
     id: string;
-    name: string;
-    surname: string;
     age: number;
-    sex: string;
+    name: string;
+    gender: string;
+    company: string;
+    email: string;
+    phone: string;
+    registered: string;
+    latitude: number;
+    longitude: number;
   }[];
 }
 
 const PeopleContent = ({ people }: PeopleContentProps) => {
   const renderRows = () =>
-    people.map(({ name, surname, age, sex, id }) => (
+    people.map(({ name, age, gender, company, phone, email, id }) => (
       <tr key={id} className={cx(styles.tableRow)}>
         <td className={cx(styles.bodyCell)}>{name}</td>
-        <td className={cx(styles.bodyCell)}>{surname}</td>
         <td className={cx(styles.bodyCell)}>{age}</td>
-        <td className={cx(styles.bodyCell)}>{sex}</td>
+        <td className={cx(styles.bodyCell)}>{gender}</td>
+        <td className={cx(styles.bodyCell)}>{phone}</td>
+        <td className={cx(styles.bodyCell)}>{email}</td>
+        <td className={cx(styles.bodyCell)}>{company}</td>
         <td className={cx(styles.bodyCell)}>
           <ActionMenu
             items={[
@@ -51,9 +58,11 @@ const PeopleContent = ({ people }: PeopleContentProps) => {
               <thead className={styles.tableHeader}>
                 <tr className={styles.headerRow}>
                   <th className={styles.headerCell}>Name</th>
-                  <th className={styles.headerCell}>Surname</th>
                   <th className={styles.headerCell}>Age</th>
-                  <th className={styles.headerCell}>Sex</th>
+                  <th className={styles.headerCell}>Gender</th>
+                  <th className={styles.headerCell}>Phone</th>
+                  <th className={styles.headerCell}>Email</th>
+                  <th className={styles.headerCell}>Company</th>
                   <th className={styles.headerCell}>Actions</th>
                 </tr>
               </thead>
