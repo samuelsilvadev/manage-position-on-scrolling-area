@@ -1,0 +1,61 @@
+.spacing {
+  display: block;
+  width: 0;
+  height: 0;
+
+  &.horizontal {
+    width: 100%;
+
+    &.tiny {
+      margin-top: 4px;
+    }
+
+    &.small {
+      margin-top: 8px;
+    }
+
+    &.medium {
+      margin-top: 12px;
+    }
+
+    &.large {
+      margin-top: 18px;
+    }
+
+    &.big {
+      margin-top: 24px;
+    }
+
+    &.huge {
+      margin-top: 42px;
+    }
+  }
+
+  &.vertical {
+    height: 100%;
+
+    &.tiny {
+      margin-left: 4px;
+    }
+
+    &.small {
+      margin-left: 8px;
+    }
+
+    &.medium {
+      margin-left: 12px;
+    }
+
+    &.large {
+      margin-left: 18px;
+    }
+
+    &.big {
+      margin-left: 24px;
+    }
+
+    &.huge {
+      margin-left: 42px;
+    }
+  }
+}

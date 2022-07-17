@@ -1,0 +1,42 @@
+.action {
+  display: inline-block;
+  position: relative;
+
+  .icon {
+    cursor: pointer;
+
+    &:hover {
+      background-color: #d5dbe2;
+    }
+  }
+}
+
+.dropDown {
+  width: 190px;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  padding: 13px 0;
+  display: none;
+  position: absolute;
+  right: -32px;
+  top: 18px;
+  z-index: 10;
+  list-style: none;
+
+  li {
+    padding: 10px 20px;
+    color: #797f87;
+    font-size: 12px;
+
+    &:hover {
+      background-color: #f4f5f9;
+      color: #1c2025;
+      cursor: pointer;
+    }
+  }
+
+  &.show {
+    display: block;
+  }
+}
