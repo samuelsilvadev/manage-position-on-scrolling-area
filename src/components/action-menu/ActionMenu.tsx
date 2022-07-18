@@ -58,20 +58,17 @@ const ActionMenu: FunctionComponent<DropdownMenuProps> = ({ items }) => {
     e: React.MouseEvent<HTMLElement>,
     action: (e: React.MouseEvent<HTMLElement>) => void
   ) => {
-    e.stopPropagation();
     action(e);
     setIsOpen(false);
   };
 
+  const handleOnToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className={styles.action} ref={ref}>
-      <button
-        className={styles.icon}
-        onClick={(e: React.MouseEvent<HTMLElement>) => {
-          e.stopPropagation();
-          setIsOpen(!isOpen);
-        }}
-      >
+      <button className={styles.icon} onClick={handleOnToggle}>
         ⠇
       </button>
       <ul
