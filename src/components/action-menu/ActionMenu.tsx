@@ -1,4 +1,10 @@
-import React, { FunctionComponent, HTMLAttributes, useState } from "react";
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import cx from "classnames";
 import styles from "./actionMenu.module.scss";
 
@@ -12,7 +18,25 @@ export interface DropdownMenuProps extends HTMLAttributes<HTMLSelectElement> {
 }
 
 const ActionMenu: FunctionComponent<DropdownMenuProps> = ({ items }) => {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOnClickOutsideOfActionMenu = (event: MouseEvent) => {
+      const safeTarget = event.target as HTMLElement;
+      const isClickOutsideOfActionMenu = !ref.current?.contains(safeTarget);
+
+      if (isClickOutsideOfActionMenu) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleOnClickOutsideOfActionMenu);
+
+    return () => {
+      document.removeEventListener("click", handleOnClickOutsideOfActionMenu);
+    };
+  }, []);
 
   const handleChange = (
     e: React.MouseEvent<HTMLElement>,
@@ -20,23 +44,23 @@ const ActionMenu: FunctionComponent<DropdownMenuProps> = ({ items }) => {
   ) => {
     e.stopPropagation();
     action(e);
-    setOpen(false);
+    setIsOpen(false);
   };
 
   return (
-    <div className={styles.action}>
+    <div className={styles.action} ref={ref}>
       <button
         className={styles.icon}
         onClick={(e: React.MouseEvent<HTMLElement>) => {
           e.stopPropagation();
-          setOpen(!open);
+          setIsOpen(!isOpen);
         }}
       >
         ⠇
       </button>
       <ul
         className={cx(styles.dropDown, {
-          [styles.show]: open,
+          [styles.show]: isOpen,
         })}
       >
         {items.map((item: ActionItem) => (
