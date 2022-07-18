@@ -53,7 +53,12 @@ const PeopleContent = ({ people }: PeopleContentProps) => {
         padding={CONTAINER_PADDING.NONE}
       >
         <div className={styles.tableWrapper}>
-          <div className={styles.wrapper}>
+          <Container
+            scrollable
+            fullHeight
+            fullWidth
+            padding={CONTAINER_PADDING.NONE}
+          >
             <table className={styles.table}>
               <thead className={styles.tableHeader}>
                 <tr className={styles.headerRow}>
@@ -68,7 +73,7 @@ const PeopleContent = ({ people }: PeopleContentProps) => {
               </thead>
               <tbody className={styles.tableBody}>{renderRows()}</tbody>
             </table>
-          </div>
+          </Container>
         </div>
       </Container>
     </Card>
