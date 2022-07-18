@@ -1,10 +1,10 @@
-import cx from "classnames";
 import ActionMenu from "components/action-menu";
 import Card, { CARD_HEIGHT, CARD_WIDTH } from "components/card";
 import Container, {
   CONTAINER_DIRECTION,
   CONTAINER_PADDING,
 } from "components/container";
+import { useEffect, useRef, useState } from "react";
 import styles from "./peopleContent.module.scss";
 
 export interface PeopleContentProps {
@@ -22,18 +22,38 @@ export interface PeopleContentProps {
   }[];
 }
 
+const TABLE_HEAD_HEIGHT = 62;
+
 const PeopleContent = ({ people }: PeopleContentProps) => {
+  const fixedContentRef = useRef<HTMLDivElement>(null);
+  const scrollableContentRef = useRef<HTMLDivElement>(null);
+
+  const [visibleAreaHeight, setVisibleAreaHeight] = useState(0);
+
+  useEffect(() => {
+    if (!fixedContentRef.current || !scrollableContentRef.current) {
+      return;
+    }
+
+    const fullHeightMinusTableHeadHeight =
+      fixedContentRef.current.offsetHeight - TABLE_HEAD_HEIGHT;
+
+    setVisibleAreaHeight(fullHeightMinusTableHeadHeight);
+  }, []);
+
   const renderRows = () =>
     people.map(({ name, age, gender, company, phone, email, id }) => (
-      <tr key={id} className={cx(styles.tableRow)}>
-        <td className={cx(styles.bodyCell)}>{name}</td>
-        <td className={cx(styles.bodyCell)}>{age}</td>
-        <td className={cx(styles.bodyCell)}>{gender}</td>
-        <td className={cx(styles.bodyCell)}>{phone}</td>
-        <td className={cx(styles.bodyCell)}>{email}</td>
-        <td className={cx(styles.bodyCell)}>{company}</td>
-        <td className={cx(styles.bodyCell)}>
+      <tr key={id} className={styles.tableRow}>
+        <td className={styles.bodyCell}>{name}</td>
+        <td className={styles.bodyCell}>{age}</td>
+        <td className={styles.bodyCell}>{gender}</td>
+        <td className={styles.bodyCell}>{phone}</td>
+        <td className={styles.bodyCell}>{email}</td>
+        <td className={styles.bodyCell}>{company}</td>
+        <td className={styles.bodyCell}>
           <ActionMenu
+            extraHeight={TABLE_HEAD_HEIGHT}
+            boundaryHeight={visibleAreaHeight}
             items={[
               { label: "Allow", action: () => null },
               { label: "Decline", action: () => null },
@@ -52,8 +72,9 @@ const PeopleContent = ({ people }: PeopleContentProps) => {
         direction={CONTAINER_DIRECTION.VERTICAL}
         padding={CONTAINER_PADDING.NONE}
       >
-        <div className={styles.tableWrapper}>
+        <div ref={fixedContentRef} className={styles.tableWrapper}>
           <Container
+            ref={scrollableContentRef}
             scrollable
             fullHeight
             fullWidth

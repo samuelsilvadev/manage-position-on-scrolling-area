@@ -20,7 +20,6 @@
   display: none;
   position: absolute;
   right: -32px;
-  top: 18px;
   z-index: 10;
   list-style: none;
 
@@ -39,4 +38,12 @@
   &.show {
     display: block;
   }
+}
+
+.top {
+  top: 18px;
+}
+
+.bottom {
+  bottom: 18px;
 }

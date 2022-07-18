@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 import cx from "classnames";
 import styles from "./container.module.scss";
 
@@ -58,62 +58,68 @@ export enum CONTAINER_BORDER {
   NONE = "none",
 }
 
-const Container: React.FC<ContainerProps> = ({
-  children,
-  padding = CONTAINER_PADDING.MEDIUM,
-  margin = CONTAINER_MARGIN.NONE,
-  direction = CONTAINER_DIRECTION.HORIZONTAL,
-  fullWidth = false,
-  scrollWidth = false,
-  fullHeight = false,
-  alignLeft = false,
-  alignRight = false,
-  alignCenter = false,
-  alignItemsCenter = false,
-  verticalCenter = false,
-  verticalTop = false,
-  verticalBottom = false,
-  spreadContent = false,
-  fullScreen = false,
-  showOverflow = false,
-  overFlowVisible = false,
-  initialPosition = false,
-  scrollable = false,
-  marginLeftAuto = false,
-  border = CONTAINER_BORDER.NONE,
-  className,
-}) => (
-  <div
-    className={cx(
-      styles.container,
-      styles[padding],
-      styles[direction],
-      styles[border],
-      styles[margin],
+const Container = forwardRef<HTMLDivElement, ContainerProps>(
+  (
+    {
+      children,
+      padding = CONTAINER_PADDING.MEDIUM,
+      margin = CONTAINER_MARGIN.NONE,
+      direction = CONTAINER_DIRECTION.HORIZONTAL,
+      fullWidth = false,
+      scrollWidth = false,
+      fullHeight = false,
+      alignLeft = false,
+      alignRight = false,
+      alignCenter = false,
+      alignItemsCenter = false,
+      verticalCenter = false,
+      verticalTop = false,
+      verticalBottom = false,
+      spreadContent = false,
+      fullScreen = false,
+      showOverflow = false,
+      overFlowVisible = false,
+      initialPosition = false,
+      scrollable = false,
+      marginLeftAuto = false,
+      border = CONTAINER_BORDER.NONE,
       className,
-      {
-        [styles.fullWidth]: fullWidth,
-        [styles.scrollWidth]: scrollWidth,
-        [styles.fullHeight]: fullHeight,
-        [styles.alignCenter]: alignCenter,
-        [styles.alignItemsCenter]: alignItemsCenter,
-        [styles.alignLeft]: alignLeft,
-        [styles.alignRight]: alignRight,
-        [styles.verticalTop]: verticalTop,
-        [styles.verticalBottom]: verticalBottom,
-        [styles.verticalCenter]: verticalCenter,
-        [styles.spreadContent]: spreadContent,
-        [styles.fullScreen]: fullScreen,
-        [styles.showOverflow]: showOverflow,
-        [styles.scrollable]: scrollable,
-        [styles.overFlowVisible]: overFlowVisible,
-        [styles.initialPosition]: initialPosition,
-        [styles.marginLeftAuto]: marginLeftAuto,
-      }
-    )}
-  >
-    {children}
-  </div>
+    },
+    ref
+  ) => (
+    <div
+      ref={ref}
+      className={cx(
+        styles.container,
+        styles[padding],
+        styles[direction],
+        styles[border],
+        styles[margin],
+        className,
+        {
+          [styles.fullWidth]: fullWidth,
+          [styles.scrollWidth]: scrollWidth,
+          [styles.fullHeight]: fullHeight,
+          [styles.alignCenter]: alignCenter,
+          [styles.alignItemsCenter]: alignItemsCenter,
+          [styles.alignLeft]: alignLeft,
+          [styles.alignRight]: alignRight,
+          [styles.verticalTop]: verticalTop,
+          [styles.verticalBottom]: verticalBottom,
+          [styles.verticalCenter]: verticalCenter,
+          [styles.spreadContent]: spreadContent,
+          [styles.fullScreen]: fullScreen,
+          [styles.showOverflow]: showOverflow,
+          [styles.scrollable]: scrollable,
+          [styles.overFlowVisible]: overFlowVisible,
+          [styles.initialPosition]: initialPosition,
+          [styles.marginLeftAuto]: marginLeftAuto,
+        }
+      )}
+    >
+      {children}
+    </div>
+  )
 );
 
 export default Container;

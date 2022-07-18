@@ -1,4 +1,10 @@
-import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
+import React, {
+  HTMLAttributes,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import cx from "classnames";
 import styles from "./actionMenu.module.scss";
 
@@ -8,12 +14,25 @@ export interface ActionItem {
 }
 
 export interface DropdownMenuProps extends HTMLAttributes<HTMLSelectElement> {
+  extraHeight: number;
+  boundaryHeight: number;
   items: ActionItem[];
 }
 
-const ActionMenu = ({ items }: DropdownMenuProps) => {
+enum Position {
+  TOP = "top",
+  BOTTOM = "bottom",
+}
+
+const ActionMenu = ({
+  items,
+  extraHeight,
+  boundaryHeight,
+}: DropdownMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+  const [dropDownPosition, setDropDownPosition] = useState(Position.TOP);
 
   useEffect(() => {
     const handleOnClickOutsideOfActionMenu = (event: MouseEvent) => {
@@ -48,6 +67,25 @@ const ActionMenu = ({ items }: DropdownMenuProps) => {
     };
   }, []);
 
+  useLayoutEffect(() => {
+    if (isOpen && ref.current && listRef.current) {
+      const scrolledTop = ref.current.offsetParent?.scrollTop ?? 0;
+      const offsetTopFromVisibleArea =
+        ref.current.offsetTop - scrolledTop - extraHeight;
+      const listHeight = listRef.current.offsetHeight;
+
+      const listFinalPositionFromVisibleArea =
+        offsetTopFromVisibleArea + listHeight;
+
+      const isOutsideOfBottomBoundary =
+        listFinalPositionFromVisibleArea > boundaryHeight;
+
+      if (isOutsideOfBottomBoundary) {
+        setDropDownPosition(Position.BOTTOM);
+      }
+    }
+  }, [isOpen, extraHeight, boundaryHeight]);
+
   const handleChange = (
     e: React.MouseEvent<HTMLElement>,
     action: (e: React.MouseEvent<HTMLElement>) => void
@@ -66,7 +104,8 @@ const ActionMenu = ({ items }: DropdownMenuProps) => {
         ⠇
       </button>
       <ul
-        className={cx(styles.dropDown, {
+        ref={listRef}
+        className={cx(styles.dropDown, styles[dropDownPosition], {
           [styles.show]: isOpen,
         })}
       >
