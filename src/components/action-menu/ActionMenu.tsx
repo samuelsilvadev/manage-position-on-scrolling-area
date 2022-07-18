@@ -38,6 +38,22 @@ const ActionMenu: FunctionComponent<DropdownMenuProps> = ({ items }) => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleOnCloseOnEscapePress = (event: KeyboardEvent) => {
+      const hasEscapeBeenPressed = event.key === "Escape";
+
+      if (hasEscapeBeenPressed) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleOnCloseOnEscapePress);
+
+    return () => {
+      document.removeEventListener("keydown", handleOnCloseOnEscapePress);
+    };
+  }, []);
+
   const handleChange = (
     e: React.MouseEvent<HTMLElement>,
     action: (e: React.MouseEvent<HTMLElement>) => void
