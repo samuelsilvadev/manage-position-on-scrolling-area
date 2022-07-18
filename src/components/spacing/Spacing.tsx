@@ -20,7 +20,7 @@ export interface SpacingProps {
   direction?: SPACING_DIRECTION;
 }
 
-const Spacing: React.FC<SpacingProps> = ({
+const Spacing = ({
   size = SPACING_MARGINS.MEDIUM,
   direction = SPACING_DIRECTION.HORIZONTAL,
 }: SpacingProps) => (

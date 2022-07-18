@@ -1,10 +1,4 @@
-import React, {
-  FunctionComponent,
-  HTMLAttributes,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
 import cx from "classnames";
 import styles from "./actionMenu.module.scss";
 
@@ -17,7 +11,7 @@ export interface DropdownMenuProps extends HTMLAttributes<HTMLSelectElement> {
   items: ActionItem[];
 }
 
-const ActionMenu: FunctionComponent<DropdownMenuProps> = ({ items }) => {
+const ActionMenu = ({ items }: DropdownMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
