@@ -1,0 +1,13 @@
+.form {
+  display: grid;
+  grid-auto-rows: 30px;
+  gap: 10px;
+}
+
+.form label {
+  align-self: flex-end;
+}
+
+.form button {
+  cursor: pointer;
+}

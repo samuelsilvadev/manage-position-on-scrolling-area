@@ -4,6 +4,7 @@ import Container, {
 } from "components/container";
 import Spacing, { SPACING_MARGINS } from "components/spacing";
 import { Link } from "react-router-dom";
+import RegisterPersonForm from "./register-person-form";
 
 const RegisterPerson = () => {
   return (
@@ -30,6 +31,7 @@ const RegisterPerson = () => {
         padding={CONTAINER_PADDING.NONE}
       >
         <Spacing size={SPACING_MARGINS.BIG} />
+        <RegisterPersonForm />
       </Container>
     </Container>
   );
