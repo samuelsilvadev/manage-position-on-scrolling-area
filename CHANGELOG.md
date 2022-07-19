@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/samuelsilvadev/manage-position-on-scrolling-area/compare/v0.0.4...v0.0.5) (2022-07-19)
+
+### Features
+
+- create static form to save a person ([06ba049](https://github.com/samuelsilvadev/manage-position-on-scrolling-area/commit/06ba049a9757e0a082dc16d3ef2b42343587c63b))
+
+### Bug Fixes
+
+- decrease layer position of action menu to be behind table heading ([276d088](https://github.com/samuelsilvadev/manage-position-on-scrolling-area/commit/276d088e01b0de37f4d7fc0b596d81038ae7a777))
+- improve mobile experience ([69c2c49](https://github.com/samuelsilvadev/manage-position-on-scrolling-area/commit/69c2c493c004798499e0f7985cc0c1287f2cc4ff))
+- remove unused data from index.html ([5c1665d](https://github.com/samuelsilvadev/manage-position-on-scrolling-area/commit/5c1665d94e9d91ada16375d796db640bc37f2f6f))
+
 ### 0.0.4 (2022-07-19)
 
 ### Features
