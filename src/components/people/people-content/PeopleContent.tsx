@@ -1,3 +1,4 @@
+import cx from "classnames";
 import ActionMenu from "components/action-menu";
 import Card, { CARD_HEIGHT, CARD_WIDTH } from "components/card";
 import Container, {
@@ -45,11 +46,27 @@ const PeopleContent = ({ people }: PeopleContentProps) => {
     people.map(({ name, age, gender, company, phone, email, id }) => (
       <tr key={id} className={styles.tableRow}>
         <td className={styles.bodyCell}>{name}</td>
-        <td className={styles.bodyCell}>{age}</td>
-        <td className={styles.bodyCell}>{gender}</td>
-        <td className={styles.bodyCell}>{phone}</td>
+        <td className={cx(styles.bodyCell, styles.hiddenInMobile)}>{age}</td>
+        <td
+          className={cx(
+            styles.bodyCell,
+            styles.hiddenInMobile,
+            styles.hiddenInTablet
+          )}
+        >
+          {gender}
+        </td>
+        <td className={cx(styles.bodyCell, styles.hiddenInMobile)}>{phone}</td>
         <td className={styles.bodyCell}>{email}</td>
-        <td className={styles.bodyCell}>{company}</td>
+        <td
+          className={cx(
+            styles.bodyCell,
+            styles.hiddenInMobile,
+            styles.hiddenInTablet
+          )}
+        >
+          {company}
+        </td>
         <td className={styles.bodyCell}>
           <ActionMenu
             extraHeight={TABLE_HEAD_HEIGHT}
@@ -84,11 +101,31 @@ const PeopleContent = ({ people }: PeopleContentProps) => {
               <thead className={styles.tableHeader}>
                 <tr className={styles.headerRow}>
                   <th className={styles.headerCell}>Name</th>
-                  <th className={styles.headerCell}>Age</th>
-                  <th className={styles.headerCell}>Gender</th>
-                  <th className={styles.headerCell}>Phone</th>
+                  <th className={cx(styles.headerCell, styles.hiddenInMobile)}>
+                    Age
+                  </th>
+                  <th
+                    className={cx(
+                      styles.headerCell,
+                      styles.hiddenInMobile,
+                      styles.hiddenInTablet
+                    )}
+                  >
+                    Gender
+                  </th>
+                  <th className={cx(styles.headerCell, styles.hiddenInMobile)}>
+                    Phone
+                  </th>
                   <th className={styles.headerCell}>Email</th>
-                  <th className={styles.headerCell}>Company</th>
+                  <th
+                    className={cx(
+                      styles.headerCell,
+                      styles.hiddenInMobile,
+                      styles.hiddenInTablet
+                    )}
+                  >
+                    Company
+                  </th>
                   <th className={styles.headerCell}>Actions</th>
                 </tr>
               </thead>
